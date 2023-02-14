@@ -1,0 +1,54 @@
+<pre>{{contactForm.value | json }}</pre>
+<h1>Formulario normal</h1>
+<form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm"><!--ngform y el envio-->
+  <div class="mb-4">
+    <label for="name" class="form-label">Name</label><!--enlazo con el nombre y con ngmodel-->
+    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model.name" required #name="ngModel">
+    
+    
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">This field is required.</div>
+  </div><!--pongo la alerta-->
+  
+  
+  
+  <div class="mb-4 form-check">
+    <label for="checkAdult" class="form-label">Are you over 18 years of age?</label>
+    <input type="checkbox" class="form-check-input" id="checkAdult" name="checkAdult" [(ngModel)]="model.checkAdult"
+      required #checkAdult="ngModel"><!--enlazo con el ngmodel y pongo su id y alerta-->
+    
+    
+    
+      <div [hidden]="checkAdult.valid || checkAdult.pristine" class="alert alert-danger">This field is required.</div>
+  </div>
+
+
+
+
+  <div class="mb-4">
+    <label for="department" class="form-label">Department</label>
+    <select name="department" id="department" class="form-select form-select-sm" [(ngModel)]="model.department">
+      <option selected>Open this select menu</option>
+      <option value="marketing">Marketing</option>
+      <option value="sales">Sales</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+
+
+
+  <div class="mb-4">
+    <label for="comment" class="form-label">Comment</label>
+    <textarea class="form-control" name="comment" id="comment" rows="4" placeholder="Leave a comment......"
+      [(ngModel)]="model.comment" required #comment="ngModel"></textarea>
+    
+    
+    
+      <div [hidden]="comment.valid || comment.pristine" class="alert alert-danger">This field is required.</div>
+  </div><!--enlazo con el model, alerta de error -->
+  
+  
+  
+  <div class="d-grid gap-2 col-4 float-end"><!--desactivo si no es valida-->
+    <button type="submit" class="btn btn-info btn-lg" [disabled]="contactForm.invalid">Send</button>
+  </div>
+</form>

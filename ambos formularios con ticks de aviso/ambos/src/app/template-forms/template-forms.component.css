@@ -1,0 +1,5 @@
+.alert-danger {
+    color: red;
+    background-color: rgba(250, 160, 160, 0.884);
+    padding: 10px;
+  }

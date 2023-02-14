@@ -1,0 +1,53 @@
+<div class="container">
+	<form (ngSubmit)="onSubmit()" [formGroup]="registerForm"><!--evento para cuando lo suba-->
+
+
+
+		<h3>Inicio de sesión - Formulario reactivo</h3>
+		<label>Nombre</label><!--enlazo con la variable y pongo sus errores-->
+		<input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid':  form['name'].errors }" />
+		
+		
+		<div *ngIf="registerForm.get('name')?.errors" class="invalid-feedback">
+			<div *ngIf="registerForm.get('name')?.errors?.['required']">El nombre es obligatorio</div>
+		</div>
+
+		
+
+
+		<label>Email</label><!--enlazo con la variable y pongo sus errores-->
+		<input type="text" formControlName="mail" class="form-control" [ngClass]="{ 'is-invalid': form['mail'].errors }" />
+		
+		
+		<div *ngIf="registerForm.get('mail')?.errors" class="invalid-feedback">
+			<div *ngIf="registerForm.get('mail')?.errors?.['required']">El email es obligatorio</div>
+			<div *ngIf="registerForm.get('mail')?.errors?.['email']">El email debe de ser válido</div>
+		</div>
+
+		
+	
+		<label>Contraseña</label><!--enlazo con la variable y pongo sus errores-->
+		<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': form['password'].errors }" />
+		
+		
+		<div *ngIf="registerForm.get('password')?.errors" class="invalid-feedback">
+			<div *ngIf="registerForm.get('password')?.errors?.['required']">Password is required</div>
+			<div *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</div>
+		</div>
+
+		<label>Repetir contraseña</label><!--enlazo con la variable y pongo sus errores-->
+		<input type="password" formControlName="repeatPass" class="form-control" [ngClass]="{ 'is-invalid': form['repeatPass'].errors }" />
+		
+		
+		<div *ngIf="registerForm.get('repeatPass')?.errors" class="invalid-feedback">
+			<div *ngIf="registerForm.get('repeatPass')?.errors?.['required']">Repetir contraseña es requerido</div>
+			<div *ngIf="registerForm.get('repeatPass')?.errors?.['mustMatch']">Las contraseñas debden de coincidir</div>
+		</div>
+		
+		
+		<div class="text-center"><!--este valido y lo limpio-->
+			<button class="btn btn-primary mr-1" [disabled]="registerForm.invalid">Registrarse</button>
+			<button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+		</div>
+	</form>
+</div>
